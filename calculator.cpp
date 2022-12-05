@@ -7,21 +7,21 @@
 #include <cmath>
 #include <iomanip>
 #include <iostream>
-
+#include <string>
 
 // calculates the result of two numbers
-double calculate(char operatorR, float firstNum, float secondNum) {
+double calculate(std::string operatorR, float firstNum, float secondNum) {
     float answer;
 
-    if (operatorR == '%') {
+    if (operatorR == "%") {
         answer = fmod(firstNum, secondNum);
-    } else if (operatorR == '/') {
+    } else if (operatorR == "/") {
         answer = firstNum / secondNum;
-    } else if (operatorR == '*') {
+    } else if (operatorR == "*") {
         answer = firstNum * secondNum;
-    } else if (operatorR == '-') {
+    } else if (operatorR == "-") {
         answer = firstNum - secondNum;
-    } else {
+    } else if (operatorR == "+") {
         answer = firstNum + secondNum;
     }
 
@@ -32,7 +32,7 @@ double calculate(char operatorR, float firstNum, float secondNum) {
 // function to determine result of two numbers
 int main() {
     // declares variables
-    char userOperator;
+    std::string userOperator;
     std::string firstNumString, secondNumString;
     float firstNumFloat, secondNumFloat;
     double userAnswer;
@@ -42,8 +42,8 @@ int main() {
     std::cin >> userOperator;
 
     // checks if invalid operator is entered
-    if (userOperator == '+' || userOperator == '-' ||
-    userOperator == '*' || userOperator == '/' || userOperator == '%') {
+    if (userOperator == "+" || userOperator == "-" ||
+        userOperator == "*" || userOperator == "/" || userOperator == "%") {
         std::cout << "Enter your first number here: ";
         std::cin >> firstNumString;
 
@@ -60,13 +60,12 @@ int main() {
 
                 // assigns variable to function call that gives return value
                 userAnswer = calculate(userOperator, firstNumFloat,
-                secondNumFloat);
+                                       secondNumFloat);
 
                 // displays results to user
-                std::cout << std::endl;
-                std::cout << "The result of " << firstNumFloat << "";
-                std::cout << userOperator << "" << secondNumFloat;
-                std::cout << " is " << userAnswer;
+                std::cout << "The result of " << firstNumFloat << " ";
+                std::cout << userOperator << " " << secondNumFloat;
+                std::cout << " = " << userAnswer;
 
                 // determines if the input is valid
             } catch (std::invalid_argument) {
